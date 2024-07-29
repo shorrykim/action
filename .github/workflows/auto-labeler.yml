@@ -1,7 +1,10 @@
 name: Auto Labeler
+
 on:
   pull_request_target:
     types: [opened]
+
+permissions: write-all
 
 jobs:
   labeler:
