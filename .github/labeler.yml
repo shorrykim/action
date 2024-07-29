@@ -1,7 +1,17 @@
+# labeler "full" schema
+
+# enable labeler on issues, prs, or both.
 enable:
   issues: false
   prs: true
 # comments object allows you to specify a different message for issues and prs
+
+comments:
+  issues: |
+    Thanks for opening this issue!
+    I have applied any labels matching special text in your title and description.
+
+    Please review the labels and make any necessary changes.
 
 # Labels is an object where:
 # - keys are labels
@@ -13,14 +23,4 @@ enable:
 labels:
   "bug":
     include:
-      - '\bbug[s]?\b'
-    exclude: []
-  "help wanted":
-    include:
-      - '\bhelp( me)?\b'
-    exclude:
-      - '\b\[test(ing)?\]\b'
-  "enhancement":
-    include:
-      - '\bfeat\b'
-    exclude: []
+      - '\bbug\b:'
