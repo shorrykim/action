@@ -4,7 +4,7 @@ on:
   pull_request_target:
     types: [opened]
 
-permissions: read-all
+permissions: write-all
 
 jobs:
   labeler:
