@@ -1,4 +1,4 @@
-name: Community
+name: Auto Labeler
 on:
   pull_request_target:
     types: [opened]
@@ -6,7 +6,6 @@ on:
 jobs:
   labeler:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check Labels
         id: labeler
