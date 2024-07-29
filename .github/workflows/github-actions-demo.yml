@@ -13,6 +13,7 @@ jobs:
       - run: echo "runner.os is ${{ runner.os }} "
       - run: echo "github.ref is ${{ github.ref }}"
       - run: echo "github.ref_name is ${{ github.ref_name }} "
+      - run: echo "github.event is ${{ github.event }} "
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "github.repository is ${{ github.repository }} "
