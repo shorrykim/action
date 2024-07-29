@@ -2,8 +2,6 @@ enable:
   issues: false
   prs: true
 
-
-ignore this label if any of these patterns match
 labels:
   "bug":
     include:
