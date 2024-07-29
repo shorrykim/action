@@ -1,0 +1,39 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on:
+  pull_request_review:
+    types: [submitted]
+  pull_request:
+    types: [opened]
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - if: github.event_name == 'pull_request'
+      - uses: hkusu/review-assign-action@v1
+        with:
+          assignees: ${{ github.actor }}
+  explore-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - if: github.event_name == 'pull_request_review'
+        run: echo "🔥 pull_request_review 이벤트에서 작업중입니다."
+      - if: github.ref_name == 'hotfix/**'
+        run: echo "🔥 hotfix 브랜치에서 작업중입니다."
+      - if: github.ref_name == 'feat/**'
+        run: echo "🔥 feat 브랜치에서 작업중입니다."
+      - run: echo "github.event_name is ${{ github.event_name }}"
+      - run: echo "runner.os is ${{ runner.os }} "
+      - run: echo "github.ref is ${{ github.ref }}"
+      - run: echo "github.ref_name is ${{ github.ref_name }} "
+      - run: echo "github.event is ${{ github.event.head }} "
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "github.repository is ${{ github.repository }} "
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "job.status is ${{ job.status }}."
