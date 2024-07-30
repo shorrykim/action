@@ -5,14 +5,14 @@ enable:
 labels:
   "bug":
     include:
-      - '\bbug[s]?\b:'
+      - '\[.*bug.*\]'
     exclude: []
   "help wanted":
     include:
-      - '\bhelp( me)?\b:'
+      - '\[.*help( me)?.*\]'
     exclude:
-      - '\btest(ing)?\b:'
+      - '\[.*test(ing)?.*\]'
   "enhancement":
     include:
-      - '\bfeat\b:'
+      - '\[.*feat.*\]'
     exclude: []
