@@ -1,7 +1,7 @@
 name: Auto Labeler
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened]
 
 permissions: write-all
@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: Check Labels
         id: labeler
-        uses: jimschubert/labeler-action@v2
+        uses: jimschubert/labeler-action@v1
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
