@@ -39,6 +39,7 @@ jobs:
 
             const labelPatterns = [
               { pattern: /- \[x\] bug:/i, label: 'bug' },
+              { pattern: /- \[x\] feat:/i, label: 'enhancement' },
               // 필요한 다른 라벨 패턴도 여기 추가할 수 있습니다.
             ];
 
