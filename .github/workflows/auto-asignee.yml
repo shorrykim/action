@@ -29,54 +29,32 @@ jobs:
               assignees: [assignee]
             });
 
-      - name: Set reviewers if none are set
+      - name: Add labels based on PR description
         uses: actions/github-script@v6
         with:
           script: |
             const { owner, repo } = context.repo;
-            console.log(context.payload.pull_request.assignees)
-            const assignee = context.actor;
             const prNumber = context.payload.pull_request.number;
+            const prBody = context.payload.pull_request.body;
 
-            const { data: reviewersData } = await github.rest.pulls.listRequestedReviewers({
-              owner,
-              repo,
-              pull_number: prNumber
-            });
+            const labelPatterns = [
+              { pattern: /- \[x\] bug:/i, label: 'bug' },
+              // 필요한 다른 라벨 패턴도 여기 추가할 수 있습니다.
+            ];
 
+            const labelsToAdd = [];
 
-            const reviewers = reviewersData.users.map(user => user.login);
-            const teamReviewers = reviewersData.teams.map(team => team.name);
-
-            console.log('Reviewers:', reviewers);
-            console.log('Team Reviewers:', teamReviewers);
-
-            if (reviewers.length > 0 || teamReviewers.length > 0) {
-              return;
+            for (const { pattern, label } of labelPatterns) {
+              if (pattern.test(prBody)) {
+                labelsToAdd.push(label);
+              }
             }
 
-            let reviewersToSet = [];
-
-            if (assignee === 'shorrykim') {
-              console.log('hihi1');
-              reviewersToSet = ['HyosikPark', 'jiwoong-im', 'taerikor'];
-            } else if (assignee === 'HyosikPark') {
-              console.log('hihi2');
-              reviewersToSet = ['shorrykim', 'jiwoong-im', 'taerikor'];
-            } else if (assignee === 'jiwoong-im') {
-              console.log('hihi3');
-              reviewersToSet = ['HyosikPark', 'shorrykim', 'taerikor'];
-            } else if (assignee === 'taerikor') {
-              console.log('hihi4');
-              reviewersToSet = ['HyosikPark', 'jiwoong-im', 'shorrykim'];
-            }
-
-            console.log('Reviewers to set:', reviewersToSet);
-            if (reviewersToSet.length > 0) {
-              await github.rest.pulls.requestReviewers({
+            if (labelsToAdd.length > 0) {
+              await github.pulls.issues.addLabels({
                 owner,
                 repo,
-                pull_number: prNumber,
-                reviewers: reviewersToSet
+                issue_number: prNumber,
+                labels: labelsToAdd
               });
             }
