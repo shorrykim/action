@@ -31,6 +31,7 @@ jobs:
 
             return { assignee };
 
+      - run: echo "assignee ${{steps.add_assignee.outputs.assignee}}"
       - name: Get reviewers
         id: get_reviewers
         uses: actions/github-script@v6
@@ -52,7 +53,7 @@ jobs:
             console.log(reviewers,teamReviewers);
             return { reviewers, teamReviewers };
 
-      - run: echo "${{steps.get_reviewers.outputs.reviewers}}, ${{steps.get_reviewers.outputs.teamReviewers}}, ${{steps.add_assignee.outputs.assignee}}"
+      - run: echo "result ${{steps.get_reviewers.outputs.reviewers}}, ${{steps.get_reviewers.outputs.teamReviewers}}, ${{steps.add_assignee.outputs.assignee}}"
       - name: Set reviewers if none are set
         if: steps.get_reviewers.outputs.reviewers == '[]' && steps.get_reviewers.outputs.teamReviewers == '[]'
         uses: actions/github-script@v6
