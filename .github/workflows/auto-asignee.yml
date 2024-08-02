@@ -57,12 +57,16 @@ jobs:
             let reviewersToSet = [];
 
             if (assignee === 'shorrykim') {
+              console.log('hihi1');
               reviewersToSet = ['HyosikPark', 'jiwoong-im', 'taerikor'];
             } else if (assignee === 'HyosikPark') {
+              console.log('hihi2');
               reviewersToSet = ['shorrykim', 'jiwoong-im', 'taerikor'];
             } else if (assignee === 'jiwoong-im') {
+              console.log('hihi3');
               reviewersToSet = ['HyosikPark', 'shorrykim', 'taerikor'];
             } else if (assignee === 'taerikor') {
+              console.log('hihi4');
               reviewersToSet = ['HyosikPark', 'jiwoong-im', 'shorrykim'];
             }
 
