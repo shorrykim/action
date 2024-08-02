@@ -34,7 +34,8 @@ jobs:
         with:
           script: |
             const { owner, repo } = context.repo;
-            const assignee = context.payload.pull_request.assignees[0].login;
+            console.log(context.payload.pull_request.assignees)
+            const assignee = context.actor;
             const prNumber = context.payload.pull_request.number;
 
             const { data: reviewersData } = await github.rest.pulls.listRequestedReviewers({
