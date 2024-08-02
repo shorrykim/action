@@ -70,6 +70,7 @@ jobs:
               reviewersToSet = ['HyosikPark', 'jiwoong-im', 'shorrykim'];
             }
 
+            console.log('Reviewers to set:', reviewersToSet);
             if (reviewersToSet.length > 0) {
               await github.rest.pulls.requestReviewers({
                 owner,
