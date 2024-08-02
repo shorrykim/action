@@ -51,7 +51,7 @@ jobs:
             }
 
             if (labelsToAdd.length > 0) {
-              await github.pulls.issues.addLabels({
+              await github.rest.issues.addLabels({
                 owner,
                 repo,
                 issue_number: prNumber,
