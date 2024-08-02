@@ -47,12 +47,10 @@ jobs:
 
             return { reviewers, teamReviewers };
 
-        run: echo "${{steps.get_reviewers.outputs.reviewers}}"
       - name: Set reviewers if none are set
         if: steps.get_reviewers.outputs.reviewers == '[]' && steps.get_reviewers.outputs.teamReviewers == '[]'
         uses: actions/github-script@v6
         with:
-          # 테스트
           script: |
             const { owner, repo } = context.repo;
             const prNumber = context.payload.pull_request.number;
