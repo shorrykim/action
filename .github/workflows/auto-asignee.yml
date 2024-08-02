@@ -47,7 +47,7 @@ jobs:
 
             return { reviewers, teamReviewers };
 
-        run: steps.get_reviewers.outputs.reviewers
+        run: echo "${{steps.get_reviewers.outputs.reviewers}}"
       - name: Set reviewers if none are set
         if: steps.get_reviewers.outputs.reviewers == '[]' && steps.get_reviewers.outputs.teamReviewers == '[]'
         uses: actions/github-script@v6
